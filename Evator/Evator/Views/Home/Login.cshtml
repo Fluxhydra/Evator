@@ -1,0 +1,89 @@
+﻿@{
+    ViewData["Title"] = "Login";
+    Layout = "_Layout";
+}
+
+@model Evator.Models.Accounts
+
+<style>
+    hr
+    {
+        background-color:#707070;
+    }
+
+    hr.top
+    {
+        background-color:#707070;
+        width: 35%;
+    }
+
+    h5
+    {
+        margin-top:20px;
+    }
+
+    img 
+    {
+        width: 150px;
+        height: 150px;
+        border-top: 20px;
+
+    }
+
+    input 
+    {
+        border: 1px solid #707070;
+        margin-top: 5px;
+        justify-content: center;
+        padding: 2px 7px;
+    }
+
+    ::-webkit-input-placeholder
+    {
+        color: #707070;
+        opacity: 1; /* Firefox */
+    }
+</style>
+
+<div class="container">
+    <div class="text-center">
+        <h5>Login Your Account!</h5>
+        <hr class="top">
+        <img src="~/assets/dev/templogo.png">
+    </div>
+</div>
+
+<div class="text-center">
+    <form method="post" asp-controller="Home" asp-action="Login">
+        <div asp-validation-summary="All"></div>
+        <div>
+            <input asp-for="Email" placeholder="Enter your email" type="email" style="width: 250px;">
+            <span asp-validation-for="Email"></span>
+        </div>
+        <div>
+            <input asp-for="AtPassword" placeholder="Enter your password" type="password" style="width: 250px;">
+            <span asp-validation-for="AtPassword"></span>
+        </div>
+        <div>
+            <a asp-action="Index">
+                <input type="button" value="Cancel" style="margin-top:10px;margin-right:10px">
+            </a>
+            <input type="submit" value="Confirm" style="margin-top:10px;margin-left:10px">
+        </div>
+    </form>
+</div>
+
+<div>
+    <hr style="border: 7px solid #707070;width:25%;margin-left:initial; margin-top:20px">
+    <hr style="margin-top:-15px">
+    <p>Don't have a guest account? <a asp-action="Register">Register Now!</a></p>
+    <hr style="border: 7px solid #707070;width:25%;margin-left:initial">
+    <hr style="margin-top:-15px">
+    <p>"Evator stands for Event &amp; Attendance Organizer, designed for mobile devices. Well, at least for now. I'm not confident with the layout for wide screen devices though all functions will still work as intended." - Hydra</p>
+    <hr style="border: 7px solid #707070;width:25%;margin-left:initial">
+    <hr style="margin-top:-15px">
+    <p>By using Evator, you agree to let us create a lot of Cookies for seamless web experiences. If you cannot log into the application, chances are either you've inserted the wrong data or you haven't enabled Cookies via browser settings.</p>
+    <hr style="border: 7px solid #707070;width:25%;margin-left:initial">
+    <hr style="margin-top:-15px">
+    <p>Contact Pertamina RU V IT Support for assistance.</p>
+</div>

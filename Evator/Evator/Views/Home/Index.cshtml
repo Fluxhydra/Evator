@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+
+<style>
+    .text {
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+    }
+
+    h3 {
+        margin-top: 25px;
+    }
+
+    hr {
+        background-color: #707070;
+        width: 35%;
+        margin-bottom: 25px;
+    }
+
+    .images {
+        width: 100%;
+        height: 150px;
+        padding: 2px
+    }
+
+    .imgborder {
+        margin: 5px;
+        border-style: ridge;
+        border-radius: 4px;
+        width: 150px;
+        display: inline-block;
+    }
+
+    .menupad {
+        padding-top: 10px;
+    }
+</style>
+
+<div class="text-center text">
+    <h3>Welcome to Evator!</h3>
+    <hr />
+    <p>Evator stands for <b>Ev</b>ent &amp; <b>At</b>tendance <b>Or</b>ganizer. We introduced a simple way of verifying your attendance using just two QR codes. This app is under development and... well, even Hydra himself doesn't really like this text in your home page.</p>
+    <div style="text-align:center">
+        <div class="imgborder">
+            <a asp-controller="Home" asp-action="Login">
+                <img src="~/assets/dev/pertaminamascot.png" class="images">
+                <p class="text menupad">Login</p>
+            </a>
+        </div>
+        <div class="imgborder">
+            <a asp-controller="Home" asp-action="Register">
+                <img src="~/assets/dev/register.png" class="images">
+                <p class="text menupad">Register</p>
+            </a>
+        </div>
+    </div>
+</div>

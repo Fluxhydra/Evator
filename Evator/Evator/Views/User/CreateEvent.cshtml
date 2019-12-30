@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Create Event";
+    Layout = "_User";
+}
+@model Evator.Models.Events
+
+<style>
+    h5 {
+        margin-top: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    hr {
+        background-color: #707070;
+        width: 40%;
+    }
+
+    img {
+        width: 311px;
+        height: 150px;
+        border-top: 20px;
+    }
+
+    input,textarea {
+        border: 1px solid #707070;
+        margin-top: 5px;
+        justify-content: center;
+        padding: 2px 7px;
+    }
+
+    ::-webkit-input-placeholder {
+        color: #707070;
+        opacity: 1; /* Firefox */
+    }
+</style>
+
+<div class="container">
+    <div class="text-center">
+        <h5>Create A New Event!</h5>
+        <hr>
+        <img src="~/assets/events/defaultevent.png">
+    </div>
+</div>
+
+<div class="text-center" style="margin-bottom:25px">
+    <form method="post" asp-controller="User" asp-action="CreateEvent" asp-antiforgery="true" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-left" style="color:red"></div>
+        <input type="hidden" asp-for="OwnerId" value="@ViewBag.MyId" />
+        <input type="file" name="image" style="margin-bottom:10px;border:none;width:108px" />
+        <div>
+            <input asp-for="EtName" placeholder="Event Name" style="width: 311px">
+        </div>
+        <div>
+            <input asp-for="Speaker" placeholder="Event Leader or Keynote Speaker" style="width: 311px">
+        </div>
+        <div>
+            <input asp-for="EtLocation" placeholder="Location" style="width: 311px">
+        </div>
+        <div>
+            <input asp-for="DateStart" placeholder="Date (mm/dd/yyyy)" type="text" style="width: 145px">
+            &nbsp;-&nbsp;
+            <input asp-for="DateEnd" placeholder="Date (mm/dd/yyyy)" type="text" style="width: 145px">
+        </div>
+        <div>
+            <input asp-for="TimeStart" placeholder="Time (hh:mm)" style="width: 145px">
+            &nbsp;-&nbsp;
+            <input asp-for="TimeEnd" placeholder="Time (hh:mm)" style="width: 145px">
+        </div>
+        <div>
+            <textarea asp-for="EtDescription" placeholder="Event Description" style="width:311px;height:100px"></textarea>
+        </div>
+        <div>
+            <a asp-controller="User" asp-action="ManageEvents"><input type="button" value="Cancel" style="margin-top:10px;margin-right:10px"></a>
+            <input type="submit" value="Confirm" style="margin-top:10px;margin-left:10px">
+        </div>
+    </form>
+</div>

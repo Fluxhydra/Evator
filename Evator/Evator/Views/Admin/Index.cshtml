@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Home";
+    Layout = "_Admin";
+}
+
+<style>
+    .text {
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+    }
+
+    h5 {
+        margin-top: 25px;
+    }
+
+    hr {
+        background-color: #707070;
+        width: 40%;
+        margin-bottom: 25px;
+    }
+
+    .images {
+        width: 100%;
+        height: 150px;
+        padding: 2px
+    }
+
+    .imgborder {
+        margin: 5px;
+        border-style: ridge;
+        border-radius: 4px;
+        width: 150px;
+        display: inline-block;
+    }
+
+    .menupad {
+        padding-top: 10px;
+    }
+</style>
+
+<div class="text-center text">
+    <h5>Welcome to Admin Page!</h5>
+    <hr />
+    <div style="text-align:center">
+        <div class="imgborder">
+            <a asp-controller="Admin" asp-action="ManageAccounts">
+                <img src="~/assets/dev/manageaccounts.jpg" class="images">
+                <p class="text menupad">Manage Accounts</p>
+            </a>
+        </div>
+        <div class="imgborder">
+            <a asp-controller="Admin" asp-action="ManageEvents">
+                <img src="~/assets/dev/manageevents.jpg" class="images">
+                <p class="text menupad">Manage Events</p>
+            </a>
+        </div>
+        <div class="imgborder">
+            <a asp-controller="Admin" asp-action="Profile">
+                <img src="~/assets/dev/register.png" class="images">
+                <p class="text menupad">Edit Profile</p>
+            </a>
+        </div>
+    </div>
+</div>

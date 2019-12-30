@@ -1,0 +1,64 @@
+﻿@*<div class="card-deck">
+        <div class="card">
+            <img class="card-img-top" src="~/assets/accounts/07192019145432.png" alt="Card image cap">
+            <div class="card-footer">
+                <small class="text-muted">Last updated 1 mins ago</small>
+            </div>
+        </div>
+        <div class="card">
+            <img class="card-img-top" src="~/assets/accounts/07192019145432.png" alt="Card image cap">
+            <div class="card-footer">
+                <small class="text-muted">Last updated 2 mins ago</small>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header">Featured</h5>
+        <div class="card-body">
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header">Featured</h5>
+        <div class="card-body">
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+    <br />
+    <div class="card">
+        <h5 class="card-header">Featured</h5>
+        <div class="card-body">
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>*@
+
+@*<h1>QR Code</h1>
+    <img src='@Url.Action("image")' alt="" />
+    <script>$(document).ready(function () {
+            alert('ViewBag.image');
+        });</script>*@
+
+@*<h5>What is your choice?</h5>
+    <a asp-action="GenerateQRInvite"><input type="button" value="Generate QR Invite" /></a>
+    <br />
+    <a asp-action="GenerateQRAttend"><input type="button" value="Generate QR Attend"/></a>*@
+
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+
+@*@model IEnumerable<Evator.Models.Events>*@
+
+@model List<Evator.Models.Events>
+
+@{
+    foreach (var Model in Model)
+    {
+        <p>@Model.EtId  @Model.EtName @Model.EtLocation</p>
+    }
+}

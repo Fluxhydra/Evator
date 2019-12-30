@@ -1,0 +1,77 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+    Layout = "_Admin";
+}
+
+@model Evator.ViewModels.ProfileViewModel
+
+<style>
+    h5 {
+        margin-top: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    hr {
+        background-color: #707070;
+        width: 40%;
+    }
+
+    img {
+        width: 150px;
+        height: 150px;
+        border-top: 20px;
+    }
+
+    input {
+        border: 1px solid #707070;
+        margin-top: 5px;
+        justify-content: center;
+        padding: 2px 7px;
+    }
+
+    ::-webkit-input-placeholder {
+        color: #707070;
+        opacity: 1; /* Firefox */
+    }
+</style>
+
+<div class="container">
+    <div class="text-center">
+        <h5>Edit Admin Data</h5>
+        <hr>
+        <img src="~/assets/accounts/@ViewBag.ProfilePath" />
+    </div>
+</div>
+
+<div class="text-center" style="margin-bottom:25px">
+    <form method="post" asp-controller="Admin" asp-action="Profile" asp-antiforgery="true" enctype="multipart/form-data">
+        <div asp-validation-summary="All" class="text-left" style="color:red"></div>
+        <input type="hidden" asp-for="Role" value="1" />
+        <input type="file" name="image" style="margin-bottom:10px;border:none;width:108px">
+        <div>
+            <input placeholder="Admin" disabled style="width: 250px;">
+        </div>
+        <div>
+            <input asp-for="Name" placeholder="Full Name" value="@Model.Name" style="width: 250px">
+        </div>
+        <div>
+            <input asp-for="EmployeeID" placeholder="Employee ID" value="@Model.EmployeeID" style="width: 250px">
+        </div>
+        <div>
+            <input asp-for="Agency" placeholder="Agency" value="@Model.Agency" style="width: 250px">
+        </div>
+        <div>
+            <input asp-for="Email" placeholder="Email" value="@Model.Email" style="width: 250px">
+        </div>
+        <div>
+            <input asp-for="Password" placeholder="Password" type="password" value="@Model.Password" style="width: 250px">
+        </div>
+        <div>
+            <input asp-for="ConfirmPassword" placeholder="Retype your password" type="password" value="@Model.Password" style="width: 250px">
+        </div>
+        <div>
+            <a asp-controller="Admin" asp-action="Index"><input type="button" value="Cancel" style="margin-top:10px;margin-right:10px"></a>
+            <input type="submit" value="Confirm" style="margin-top:10px;margin-left:10px">
+        </div>
+    </form>
+</div>

@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "Manage Events";
+    Layout = "_Admin";
+}
+
+@model IEnumerable<Evator.Models.Events>
+
+<style>
+    h5 {
+        margin-top: 25px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    hr {
+        background-color: #707070;
+        width: 30%;
+    }
+
+    input {
+        border: 1px solid #707070;
+        margin-top: 5px;
+        justify-content: center;
+        padding: 2px 7px;
+    }
+
+    ::-webkit-input-placeholder {
+        color: #707070;
+        opacity: 1; /* Firefox */
+    }
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td, th {
+        border: 1px solid #707070;
+        text-align: center;
+        padding: 5px;
+    }
+
+    tr:nth-child(odd) {
+        background-color: #a0a5ad;
+    }
+
+    a {
+        color: royalblue;
+    }
+</style>
+
+<div class="text-center">
+    <h5>Manage Events</h5>
+    <hr />
+</div>
+<div>
+    <form method="get" asp-action="ManageEvents" class="float-left">
+        <input type="text" name="Query" placeholder="Event Name" value="@ViewBag.Query">
+        <input type="submit" value="Search" />
+    </form>
+</div>
+<br />
+<br />
+@{
+    int Initial = ViewBag.Initial;
+    int FlagMaxPages = Initial;
+    int Previous, Next;
+}
+<div>
+    <table>
+        <tr>
+            <th style="width:10%">No</th>
+            <th style="width:50%">Event</th>
+            <th colspan="2" style="width:20%">QR Generator</th>
+            <th colspan="3" style="width:20%">Manage</th>
+        </tr>
+
+        @foreach (var Model in Model)
+        {
+            Initial++;
+
+            <tr>
+                <td>@Initial</td>
+                <td style="text-align:left">@Model.EtName</td>
+                <td><a asp-action="Generated" asp-route-myText="@ViewBag.Link@Model.QrInvite" style="color:black"><b>Invite</b></a></td>
+                <td><a asp-action="Generated" asp-route-myText="@ViewBag.Link@Model.QrAttend" style="color:black"><b>Attend</b></a></td>
+                <td><a asp-action="EditEvent" asp-route-id="@Model.EtId" style="color:black"><b>Edit</b></a></td>
+                <td>
+                    <a asp-action="EventStatus" asp-route-id="@Model.EtId" style="color:black">
+                        @{
+                            if (Model.EtStatus == 0)
+                            {
+                                <b>Public</b>
+                            }
+                            else
+                            {
+                                <b>Private</b>
+                            }
+                        }
+                    </a>
+                </td>
+                <td><a asp-action="EventPDF" asp-route-id="@Model.EtId" style="color:black"><b>PDF</b></a></td>
+            </tr>
+        }
+    </table>
+</div>
+@{
+    if (Initial % 10 != 0)
+    {
+        Previous = FlagMaxPages - 10;
+    }
+    else
+    {
+        Previous = Initial - 20;
+    }
+    if (Initial % 10 != 0)
+    {
+        Next = FlagMaxPages;
+    }
+    else
+    {
+        if (ViewBag.Limit == Initial)
+        {
+            Next = FlagMaxPages;
+        }
+        else
+        {
+            Next = Initial;
+        }
+    }
+}
+
+<div class="text-center" style="margin-top:20px;margin-bottom:20px">
+    <a asp-action="ManageEvents" asp-route-Initial="@Previous" asp-route-Query="@ViewBag.Query">
+        <img src="~/assets/dev/leftarrow.png" style="width:20px;height:20px;margin-right:10px" />
+    </a>
+    Display @ViewBag.L1 - @ViewBag.L2 events out of @ViewBag.L3
+    <a asp-action="ManageEvents" asp-route-Initial="@Next" asp-route-Query="@ViewBag.Query">
+        <img src="~/assets/dev/rightarrow.png" style="width:20px;height:20px;margin-left:10px" />
+    </a>
+</div>
